@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap');
+
+main{
+    background-image: url(bom-dia.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+article p{
+    text-align: center;
+}
+nav li, a:link{
+    color:blue;
+
+} 
+nav a:visited{
+    color: maroon;
+} 
+nav a:active{
+    color: darkgreen;
+} 
+nav a:hover{
+    background-color: yellow;
+}
+
+nav li::before{
+    content: "\279D";
+}
+
+.paragrafos{
+    background-color: rgb(42, 105, 241);
+    color: rgb(236, 234, 102);
+}
+
+#primeiroLorem{
+    font-family: 'Imperial Script', cursive;
+}
