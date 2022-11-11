@@ -1,0 +1,149 @@
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body *{
+    margin: 0px;
+    padding: 0px;
+}
+h1{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.cabecalho{
+    margin-left: 10px;
+    padding-top: 10px;
+}
+.logo{
+    margin-bottom: auto;
+    margin-top: auto;
+}
+div.header{
+    background-color: aquamarine;
+    font-family: sans-serif;
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    grid-area:header;
+}
+div.header a.linkParaP5 img.mensagens{
+    margin-bottom: auto;
+    margin-top: 10px;
+    padding-left: 0%;
+}
+
+
+/* Container de todo o conteúdo da página */
+.bodyContainer {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 60px auto 60px;
+    grid-template-areas:
+    "header header header"
+    ". main ."
+    "footer footer footer";
+}
+.bodyContainer div.header{
+    background-color: aquamarine;
+    font-family: sans-serif;
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    grid-area:header;
+
+}
+.bodyContainer div.main{
+    grid-area:main;
+    background: rgb(255, 249, 241);
+    box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.34);
+}
+
+/* Container do conteúdo principal */
+.bodyContainer div.main div.container {
+    background: rgb(255, 249, 241);
+    padding: 0px;
+    margin-top: 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 400px auto auto auto auto;
+    grid-template-areas:
+    "imagen1 imagen1"
+    "imagen2 imagen2"
+    "imagen3 imagen3"
+    "imagen4 imagen4"
+    "imagen5 imagen5";
+    gap: 30px;
+    justify-items: center;
+    align-items: center;
+}
+.container img{
+    border-radius: 19px;
+    width: 190px;
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.35);
+
+}
+
+div.container div.imgPlanta1 img{
+    align-self: initial;
+    grid-area:imagen1;
+
+}
+div.container div.imgPlanta2 img{
+    grid-area:imagen2;
+
+}
+div.container div.imgPlanta3 img{
+    grid-area:imagen3;
+
+}
+div.container div.imgPlanta4 img{
+    grid-area:imagen4;
+
+}
+div.container div.imgPlanta5 img{
+    grid-area:imagen5;
+
+}
+.circleadd {
+    background-color: rgba(5, 215, 64);
+    border-radius: 50%;
+    bottom: -24px;
+    width: 49px;
+    height: 49px;
+    overflow: hidden;
+  }
+  
+.circleadd img{
+    position: relative;
+    bottom: -5px;
+    width: 7px;
+    height: 70px;
+}
+  
+.footer {
+    grid-area:footer;
+    background: aquamarine;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    height: 50px;
+}
+  
+.footer img{
+    max-width:40px;
+    max-height:40px;
+    width: auto;
+    height: auto;
+}
+  .buttNewSearch {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

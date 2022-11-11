@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body *{
+    margin: 0px;
+    padding: 0px;
+}
+header {
+    background-color: aquamarine;
+    font-family: sans-serif;
+    width: auto;
+    height: 60px;
+}
+form h2{
+    font-size: xx-large;
+    font-family: 'Inter', sans-serif;
+    margin: 5px 5px 30px 5px;
+}
+.criarConta {
+    flex-flow: column;
+    padding: 63px;
+    margin: 0px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    height: 270px;
+    background: aquamarine;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.entradaDeTexto{
+    background-color: white;
+    border-radius: 7px;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    width: 350px;
+    height: 25px;
+    padding: 3%;
+    margin: 5px 15px 15px 5px;
+    display: flex;
+}
+.botaoDeProximo{
+    color: white;
+    background-color: black;
+    border-radius: 7px;
+    padding: 3%;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 377px;
+    height: 50px;
+    font-size: 17px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    cursor: pointer;
+}
+form a{
+    color: black;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+}
+.cabecalho{
+    margin-left: 10px;
+    padding-top: 10px;
+}
+.logo{
+    margin-bottom: -8px;
+}
+a {
+    text-decoration: none;
+    background-color: transparent;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+a:hover{
+    text-decoration: underline;
+}
