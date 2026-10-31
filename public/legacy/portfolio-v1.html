@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bruno Nascimento — Portfólio</title>
+  <meta name="description" content="Portfólio de Bruno Nascimento Campos, desenvolvedor full stack e estudante de Sistemas de Informação no IFFluminense.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fbfbfa;
+      --surface: #ffffff;
+      --text: #1b1d21;
+      --muted: #5d636e;
+      --line: #e6e6e3;
+      --accent: #1f6f5c;
+      --accent-soft: #e5f1ed;
+      --chip: #f1f1ee;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121416;
+        --surface: #191c1f;
+        --text: #e9eaec;
+        --muted: #9aa1ab;
+        --line: #2a2e33;
+        --accent: #5cc4a6;
+        --accent-soft: #1a2e29;
+        --chip: #23272b;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrap { display: flex; gap: 20px; align-items: center; height: 56px; overflow-x: auto; }
+    nav strong { margin-right: auto; white-space: nowrap; }
+    nav a { color: var(--muted); font-size: 14px; white-space: nowrap; }
+
+    header { padding: 72px 0 48px; }
+    header h1 { font-size: clamp(32px, 5vw, 44px); line-height: 1.15; margin: 0 0 8px; letter-spacing: -0.02em; }
+    header .role { font-size: 19px; color: var(--muted); margin: 0 0 20px; }
+    header p.lead { max-width: 680px; margin: 0 0 24px; }
+    .links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 14px; border: 1px solid var(--line); border-radius: 8px;
+      background: var(--surface); color: var(--text); font-size: 14px; font-weight: 500;
+    }
+    .btn:hover { border-color: var(--accent); text-decoration: none; }
+    .btn.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-top: 36px; }
+    .stat { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+    .stat b { display: block; font-size: 24px; letter-spacing: -0.01em; }
+    .stat span { color: var(--muted); font-size: 13px; }
+
+    section { padding: 40px 0; border-top: 1px solid var(--line); }
+    h2 { font-size: 24px; margin: 0 0 6px; letter-spacing: -0.01em; }
+    .sub { color: var(--muted); margin: 0 0 24px; }
+
+    .timeline { display: grid; gap: 14px; }
+    .job { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; }
+    .job-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; }
+    .job h3 { margin: 0; font-size: 17px; }
+    .when { color: var(--muted); font-size: 14px; font-family: "JetBrains Mono", monospace; }
+    .org { color: var(--muted); font-size: 14px; margin: 2px 0 10px; }
+    .job ul { margin: 0; padding-left: 18px; }
+    .job li { margin: 4px 0; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: 14px; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; display: flex; flex-direction: column; }
+    .card h3 { margin: 0 0 4px; font-size: 17px; }
+    .card .meta { font-size: 13px; color: var(--muted); font-family: "JetBrains Mono", monospace; margin-bottom: 10px; }
+    .card p { margin: 0 0 10px; }
+    .card ul { margin: 0 0 12px; padding-left: 18px; font-size: 15px; }
+    .card .actions { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; padding-top: 6px; }
+    .badge {
+      display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px;
+      background: var(--accent-soft); color: var(--accent); margin-bottom: 8px; align-self: flex-start;
+    }
+    .btn { overflow-wrap: anywhere; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .chip { font-size: 12.5px; padding: 2px 9px; border-radius: 6px; background: var(--chip); color: var(--text); font-family: "JetBrains Mono", monospace; }
+
+    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 14px; }
+    .skills div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+    .skills h3 { margin: 0 0 10px; font-size: 15px; }
+
+    .note { font-size: 14px; color: var(--muted); background: var(--surface); border: 1px dashed var(--line); border-radius: 10px; padding: 12px 16px; margin-bottom: 18px; }
+
+    footer { padding: 32px 0 48px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <strong>Bruno Nascimento</strong>
+    <a href="#experiencia">Experiência</a>
+    <a href="#projetos">Projetos</a>
+    <a href="#profissionais">Trabalhos profissionais</a>
+    <a href="#competencias">Competências</a>
+    <a href="#formacao">Formação</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <header>
+    <h1>Bruno Nascimento Campos</h1>
+    <p class="role">Desenvolvedor Full Stack · Bacharelado em Sistemas de Informação, IFFluminense Campus Campos Centro</p>
+    <p class="lead">
+      Desenvolvo sistemas web de ponta a ponta com TypeScript, React, Next.js, Vue e NestJS,
+      bancos de dados relacionais e não relacionais e testes automatizados.
+      Fui bolsista ENS-A no Polo de Inovação Campos dos Goytacazes, onde atuei em P&amp;D de
+      sistemas de monitoramento hídrico com IoT, dashboards e modelos preditivos.
+    </p>
+    <div class="links">
+      <a class="btn primary" href="https://github.com/BrunoNC22">GitHub · BrunoNC22</a>
+      <a class="btn" href="https://www.linkedin.com/in/bruno-nascimento-09771338a">LinkedIn</a>
+      <a class="btn" href="mailto:bruno.nascimento.campos00@gmail.com">bruno.nascimento.campos00@gmail.com</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>3+ anos</b><span>desenvolvendo software (desde 2023)</span></div>
+      <div class="stat"><b>1 ano e 9 meses</b><span>de bolsa ENS-A em projeto Embrapii no PICG</span></div>
+      <div class="stat"><b>1.000+</b><span>commits de autoria própria em projetos</span></div>
+      <div class="stat"><b>TDD</b><span>testes automatizados com Vitest e Jest</span></div>
+    </div>
+  </header>
+
+  <section id="experiencia">
+    <h2>Experiência</h2>
+    <p class="sub">Atuação em P&amp;D, empresas de tecnologia e projetos para clientes.</p>
+
+    <div class="timeline">
+      <article class="job">
+        <div class="job-head"><h3>Desenvolvedor Full Stack (freelancer)</h3><span class="when">dez/2025 – atual</span></div>
+        <p class="org">Projetos para clientes, sob acordo de confidencialidade</p>
+        <ul>
+          <li>Desenvolvimento de sistemas de gestão e plataformas web com Next.js, React, NestJS, MongoDB e PostgreSQL.</li>
+          <li>Testes automatizados com Jest e Vitest; ambientes com Docker e Docker Compose.</li>
+          <li>Integrações com pagamentos (Stripe), WhatsApp e modelos de IA (OpenAI). Detalhes em <a href="#profissionais">Trabalhos profissionais</a>.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head"><h3>Engenheiro de Software</h3><span class="when">jul/2025 – out/2025</span></div>
+        <p class="org">LRGE Systems</p>
+        <ul>
+          <li>Migração de uma aplicação legada em PHP para Next.js, com ganho de performance e escalabilidade.</li>
+          <li>Funcionalidades desenvolvidas com TDD e Arquitetura Hexagonal; refatoração de módulos críticos com SOLID e Design Patterns.</li>
+          <li>Filas assíncronas com Laravel Queues e Redis; modelagem em PostgreSQL; ambientes com Docker Compose.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head"><h3>Engenheiro de Software</h3><span class="when">out/2024 – ago/2025</span></div>
+        <p class="org">T&amp;D Sustentável</p>
+        <ul>
+          <li>Desenvolvimento full stack e integração de sistemas IoT de monitoramento hídrico (Python, TypeScript, Vue.js, FastAPI, MongoDB, MQTT).</li>
+          <li>Microsserviços em FastAPI, com testes de carga em Gatling.</li>
+          <li>Dashboards interativos em Vue.js e Gridstack com dados de sensores em tempo real.</li>
+          <li>Automações em NestJS para extrair dados de planilhas e integrá-los a ferramentas de <strong>Business Intelligence</strong>.</li>
+          <li>Deploy automatizado com Docker, GitHub Actions, Ansible e semantic-release.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head"><h3>Bolsista ENS-A, Engenharia de Software</h3><span class="when">fev/2023 – out/2024</span></div>
+        <p class="org">Polo de Inovação Campos dos Goytacazes (PICG / IFFluminense / Embrapii), projeto PIFF-2212.0036, “Otimização de Hardware e Software de Sistema de Economia de Água Predial”, 20 h semanais</p>
+        <ul>
+          <li>Interfaces web em Vue.js para visualizar dados de sensores e históricos de consumo.</li>
+          <li>Biblioteca em TypeScript sobre HTML5 Canvas que desenha instalações hídricas como grafos, com dados operacionais em tempo real.</li>
+          <li>Extrator automatizado que importa planilhas para MySQL.</li>
+          <li>Modelos de machine learning em Python para prever consumo de água a partir de variáveis sazonais.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <h2>Projetos com código aberto</h2>
+    <p class="sub">Autoria verificável: cada repositório está na conta <a href="https://github.com/BrunoNC22">github.com/BrunoNC22</a> e mostra o histórico de commits.</p>
+
+    <div class="grid">
+      <article class="card">
+        <span class="badge">Destaque</span>
+        <h3>Shopping List</h3>
+        <div class="meta">jan/2026 – abr/2026 · 143 commits próprios</div>
+        <p>App de lista de compras que funciona offline e sincroniza com o servidor quando a conexão volta.</p>
+        <ul>
+          <li>Monorepo com pacote de domínio compartilhado entre frontend e API (Clean Architecture).</li>
+          <li>Fila de sincronização em IndexedDB e persistência local, remota e híbrida.</li>
+          <li>Login com Google e JWT; validação com Zod.</li>
+          <li><strong>~40 arquivos de testes automatizados</strong> com Vitest (domínio e infraestrutura).</li>
+          <li>Migrações de banco automatizadas com GitHub Actions.</li>
+        </ul>
+        <div class="chips"><span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">Vite</span><span class="chip">Tailwind</span><span class="chip">Express</span><span class="chip">Prisma</span><span class="chip">PostgreSQL</span><span class="chip">Vitest</span></div>
+        <div class="actions">
+          <a class="btn primary" href="https://your-shopping-list.vercel.app">Ver online</a>
+          <a class="btn" href="https://github.com/BrunoNC22/shopping-list">Repositório</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="badge">Destaque</span>
+        <h3>EmpregAE</h3>
+        <div class="meta">jul/2024 – nov/2025 · 187 commits próprios</div>
+        <p>Plataforma de empregabilidade: candidatos montam currículo e encontram vagas; empregadores publicam oportunidades.</p>
+        <ul>
+          <li>Frontend em Vue 3 + TypeScript com Clean Architecture (use cases, factories, adapters).</li>
+          <li>API em NestJS com Arquitetura Hexagonal (ports &amp; adapters), autenticação JWT e documentação Swagger.</li>
+          <li>PostgreSQL com TypeORM; ambientes de desenvolvimento e produção com Docker Compose.</li>
+        </ul>
+        <div class="chips"><span class="chip">TypeScript</span><span class="chip">Vue 3</span><span class="chip">PrimeVue</span><span class="chip">NestJS</span><span class="chip">PostgreSQL</span><span class="chip">TypeORM</span><span class="chip">Docker</span></div>
+        <div class="actions">
+          <a class="btn primary" href="https://empregae.vercel.app">Ver online</a>
+          <a class="btn" href="https://github.com/BrunoNC22/EmpregAE">Frontend</a>
+          <a class="btn" href="https://github.com/BrunoNC22/empreg-ae-backend">Backend</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>Avaliação da Qualidade da Água</h3>
+        <div class="meta">set/2023 · 42 commits próprios</div>
+        <p>Aplicação que classifica a potabilidade da água a partir de pH, turbidez e cor aparente usando lógica fuzzy, com gráficos interativos.</p>
+        <div class="chips"><span class="chip">Vue 3</span><span class="chip">JavaScript</span><span class="chip">Chart.js</span><span class="chip">Lógica Fuzzy</span></div>
+        <div class="actions">
+          <a class="btn primary" href="https://avaliacao-da-qualidade-da-agua.vercel.app">Ver online</a>
+          <a class="btn" href="https://github.com/BrunoNC22/AvaliacaoDaQualidadeDeAgua">Repositório</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>Metaheurística GRASP: Problema da Mochila</h3>
+        <div class="meta">ago/2023 – set/2023 · 25 commits próprios</div>
+        <p>Resolve o Problema da Mochila Binária com a metaheurística GRASP, com API em Java e interface web para visualizar as soluções.</p>
+        <div class="chips"><span class="chip">Java</span><span class="chip">React</span><span class="chip">Otimização</span></div>
+        <div class="actions">
+          <a class="btn" href="https://github.com/BrunoNC22/GRASP">Algoritmo</a>
+          <a class="btn" href="https://github.com/BrunoNC22/Metaheuristica-Grasp-Api">API</a>
+          <a class="btn" href="https://github.com/BrunoNC22/Metaheuristica-Grasp-View">Interface</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>Socket Message Protocol</h3>
+        <div class="meta">dez/2023 – ago/2024</div>
+        <p>Servidor e cliente TCP em Node.js com um protocolo próprio de troca de mensagens (PTMP) e tratamento de requisições HTTP.</p>
+        <div class="chips"><span class="chip">Node.js</span><span class="chip">TCP Sockets</span><span class="chip">Redes</span></div>
+        <div class="actions"><a class="btn" href="https://github.com/BrunoNC22/Socket-Message-Protocol">Repositório</a></div>
+      </article>
+
+      <article class="card">
+        <h3>Sistema de Locação</h3>
+        <div class="meta">dez/2022 – mai/2023 · 47 commits próprios</div>
+        <p>Sistema web de locação desenvolvido na disciplina de Desenvolvimento Web do curso de Sistemas de Informação do IFF.</p>
+        <div class="chips"><span class="chip">Java</span><span class="chip">HTML</span><span class="chip">JavaScript</span></div>
+        <div class="actions"><a class="btn" href="https://github.com/BrunoNC22/Sistema-de-Locacao">Repositório</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="profissionais">
+    <h2>Trabalhos profissionais</h2>
+    <p class="sub">Sistemas desenvolvidos para clientes e em equipe. O código-fonte é privado.</p>
+    <p class="note">Por confidencialidade, os clientes não são identificados e o código-fonte não é publicado. Repositórios privados podem ser demonstrados na entrevista.</p>
+
+    <div class="grid">
+      <article class="card">
+        <h3>Sistema de gestão para agência de marketing</h3>
+        <div class="meta">dez/2025 – atual · em equipe</div>
+        <p>Plataforma interna para planejar e acompanhar postagens de clientes, controlar responsáveis e prazos e gerar relatórios financeiros.</p>
+        <div class="chips"><span class="chip">Next.js</span><span class="chip">React</span><span class="chip">NestJS</span><span class="chip">MongoDB</span><span class="chip">Jest</span><span class="chip">Vitest</span></div>
+      </article>
+
+      <article class="card">
+        <h3>Plataforma de músicas sob demanda</h3>
+        <div class="meta">fev/2026 – atual · em equipe</div>
+        <p>Catálogo de faixas, pedidos de produção personalizada com chat em tempo real e assinaturas com pagamento online.</p>
+        <div class="chips"><span class="chip">Next.js</span><span class="chip">NestJS</span><span class="chip">MongoDB</span><span class="chip">Socket.IO</span><span class="chip">Stripe</span><span class="chip">Jest</span></div>
+      </article>
+
+      <article class="card">
+        <h3>Dashboard de gestão para restaurante</h3>
+        <div class="meta">mai/2026 – jul/2026</div>
+        <p>Aplicação desktop com indicadores de vendas e operação, alimentada pelo banco de dados do sistema do restaurante.</p>
+        <div class="chips"><span class="chip">Electron</span><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">Nx</span></div>
+      </article>
+
+      <article class="card">
+        <h3>Atendimento via WhatsApp com IA</h3>
+        <div class="meta">jul/2026</div>
+        <p>Assistente de IA que atende os clientes de uma autoescola pelo WhatsApp, com painel web para conectar o número e configurar o comportamento da IA.</p>
+        <div class="chips"><span class="chip">NestJS</span><span class="chip">React</span><span class="chip">MongoDB</span><span class="chip">OpenAI API</span></div>
+      </article>
+
+      <article class="card">
+        <h3>Jogo educativo de matemática em tempo real</h3>
+        <div class="meta">set/2026 – out/2026 · em equipe</div>
+        <p>Plataforma de jogos de matemática para sala de aula: o projetor mostra o jogo e os alunos respondem pelo celular via QR code. Apresentada na Mostra de Extensão da UENF (out/2026).</p>
+        <div class="chips"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">NestJS</span><span class="chip">Socket.IO</span><span class="chip">Prisma</span><span class="chip">Vitest</span><span class="chip">Docker</span></div>
+      </article>
+
+      <article class="card">
+        <h3>Landing page para escritório de advocacia</h3>
+        <div class="meta">2026</div>
+        <p>Site institucional responsivo, com foco em apresentação dos serviços e contato.</p>
+        <div class="chips"><span class="chip">TypeScript</span><span class="chip">React</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="competencias">
+    <h2>Competências técnicas</h2>
+    <p class="sub">Tecnologias que usei em projetos reais, listados acima.</p>
+    <div class="skills">
+      <div>
+        <h3>Frontend</h3>
+        <div class="chips"><span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Vue.js</span><span class="chip">Tailwind CSS</span><span class="chip">Electron</span><span class="chip">HTML5 Canvas</span></div>
+      </div>
+      <div>
+        <h3>Backend</h3>
+        <div class="chips"><span class="chip">Node.js</span><span class="chip">NestJS</span><span class="chip">Express</span><span class="chip">Python / FastAPI</span><span class="chip">Java / Spring Boot</span><span class="chip">PHP / Laravel</span></div>
+      </div>
+      <div>
+        <h3>Bancos de dados</h3>
+        <div class="chips"><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">SQLite</span><span class="chip">Redis</span><span class="chip">Prisma</span><span class="chip">TypeORM</span></div>
+      </div>
+      <div>
+        <h3>Testes e qualidade</h3>
+        <div class="chips"><span class="chip">TDD</span><span class="chip">Vitest</span><span class="chip">Jest</span><span class="chip">Gatling</span><span class="chip">Clean Architecture</span><span class="chip">Hexagonal</span><span class="chip">SOLID</span></div>
+      </div>
+      <div>
+        <h3>DevOps</h3>
+        <div class="chips"><span class="chip">Git / GitHub</span><span class="chip">GitHub Actions</span><span class="chip">Docker</span><span class="chip">NGINX</span><span class="chip">Ansible</span></div>
+      </div>
+      <div>
+        <h3>Dados e BI</h3>
+        <div class="chips"><span class="chip">Dashboards</span><span class="chip">Integração com BI</span><span class="chip">ETL de planilhas</span><span class="chip">IoT / MQTT</span><span class="chip">Machine Learning</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="formacao">
+    <h2>Formação</h2>
+    <div class="timeline">
+      <article class="job">
+        <div class="job-head"><h3>Bacharelado em Sistemas de Informação</h3><span class="when">2020 – cursando</span></div>
+        <p class="org">Instituto Federal Fluminense (IFFluminense), Campus Campos Centro</p>
+      </article>
+      <article class="job">
+        <div class="job-head"><h3>ReactJS, Hooks, Recoil, TDD, Clean Architecture, SOLID</h3><span class="when">jan/2026 · 41,5 h</span></div>
+        <p class="org">Udemy, instrutor Rodrigo Manguinho · <a href="https://ude.my/UC-0a725dad-bdab-4526-9799-b388a10c8035">certificado</a></p>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">Bruno Nascimento Campos · Campos dos Goytacazes, RJ · <a href="https://github.com/BrunoNC22">github.com/BrunoNC22</a></div>
+</footer>
+
+</body>
+</html>

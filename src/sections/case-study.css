@@ -1,0 +1,227 @@
+.cs-list {
+  display: grid;
+  gap: clamp(72px, 10vw, 120px);
+}
+
+.cs {
+  display: grid;
+  gap: clamp(28px, 4vw, 40px);
+  min-width: 0;
+}
+
+.cs__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px 32px;
+}
+
+.cs__heading {
+  display: grid;
+  gap: 10px;
+  max-width: 720px;
+}
+
+.cs__title {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.cs__tagline {
+  font-size: 18px;
+  color: var(--text);
+}
+
+.cs__role {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.cs__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cs__stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.cs__stats > div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 2px;
+  padding: 18px 20px;
+}
+
+.cs__stats > div + div {
+  border-left: 1px solid var(--line);
+}
+
+.cs__stats dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.6vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--accent);
+}
+
+.cs__stats dt {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.cs__intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: center;
+}
+
+.cs__problem {
+  display: grid;
+  gap: 14px;
+}
+
+.cs__problem p {
+  font-size: 16.5px;
+  color: var(--muted);
+}
+
+.cs__label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.cs__block {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+  margin: 0;
+}
+
+.cs__decisions {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 14px;
+}
+
+.cs__decision {
+  position: relative;
+  padding: 20px 20px 20px 22px;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.cs__decision-n {
+  font-size: 12px;
+  color: var(--faint);
+}
+
+.cs__decision h5 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 16.5px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.cs__decision p {
+  font-size: 14.5px;
+  color: var(--muted);
+}
+
+.cs__figure figcaption,
+.cs__caption {
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+.cs__figure figcaption .mono,
+.cs__caption .mono {
+  margin-right: 6px;
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.cs__bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.cs__code {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.cs__notes {
+  display: grid;
+  gap: 14px;
+}
+
+.cs__note {
+  padding: 20px;
+  display: grid;
+  gap: 10px;
+}
+
+.cs__note p,
+.cs__note ul {
+  font-size: 14.5px;
+  color: var(--muted);
+}
+
+.cs__note ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+}
+
+.cs__note li::marker {
+  color: var(--accent);
+}
+
+@media (max-width: 960px) {
+  .cs__intro,
+  .cs__bottom {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .cs__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cs__stats > div:nth-child(3) {
+    border-left: 0;
+  }
+
+  .cs__stats > div:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
+  }
+}

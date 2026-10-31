@@ -1,0 +1,114 @@
+.dg-scroll {
+  overflow-x: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 1px 1px, var(--line) 1px, transparent 0) 0 0 / 18px 18px,
+    var(--bg-soft);
+}
+
+.dg {
+  display: block;
+  width: 100%;
+  min-width: 660px;
+  height: auto;
+  font-family: var(--font-body);
+}
+
+.dg-group rect {
+  fill: color-mix(in srgb, var(--surface) 55%, transparent);
+  stroke: var(--line-strong);
+  stroke-dasharray: 5 5;
+}
+
+.dg-group text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  fill: var(--faint);
+}
+
+.dg-group .dg-group-note {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.dg-box rect,
+.dg-box polygon {
+  fill: var(--surface);
+  stroke: var(--line-strong);
+  stroke-width: 1.2;
+}
+
+.dg-box--accent rect,
+.dg-box--accent polygon {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+}
+
+.dg-box--data rect {
+  stroke: var(--code-function);
+}
+
+.dg-box--shared rect {
+  fill: color-mix(in srgb, var(--code-keyword) 9%, var(--surface));
+  stroke: color-mix(in srgb, var(--code-keyword) 60%, transparent);
+}
+
+.dg-title {
+  font-family: var(--font-display);
+  font-size: 14.5px;
+  font-weight: 600;
+  fill: var(--text);
+}
+
+.dg-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  fill: var(--muted);
+}
+
+.dg-line {
+  font-size: 12px;
+  fill: var(--muted);
+}
+
+.dg-box--accent .dg-sub {
+  fill: var(--accent);
+}
+
+.dg-arrow path {
+  fill: none;
+  stroke: var(--faint);
+  stroke-width: 1.5;
+}
+
+.dg-arrow--dashed path {
+  stroke-dasharray: 5 4;
+}
+
+.dg-arrowhead {
+  fill: var(--faint);
+}
+
+.dg-arrow text {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  fill: var(--accent);
+  paint-order: stroke;
+  stroke: var(--bg-soft);
+  stroke-width: 5px;
+  stroke-linejoin: round;
+}
+
+.dg-step circle {
+  fill: var(--accent);
+}
+
+.dg-arrow .dg-step text {
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--accent-ink);
+  stroke: none;
+}

@@ -1,0 +1,145 @@
+/* Projetos abertos */
+
+.pgrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.pcard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.pcard--wide {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+}
+
+.pcard__shot {
+  border-right: 1px solid var(--line);
+  background: var(--bg-soft);
+  overflow: hidden;
+}
+
+.pcard__shot img {
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.pcard__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px;
+  height: 100%;
+}
+
+.pcard__meta {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.pcard h3 {
+  font-size: 19px;
+}
+
+.pcard__desc {
+  font-size: 14.5px;
+  color: var(--muted);
+}
+
+.pcard__links {
+  margin-top: auto;
+  padding-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pcard__links .btn {
+  padding: 7px 12px;
+  font-size: 13px;
+}
+
+/* Trabalhos profissionais */
+
+.wgrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.wcard {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.wcard__top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.wcard__lock {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: 7px;
+  border: 1px solid var(--line-strong);
+  color: var(--faint);
+}
+
+.wcard__lock svg {
+  width: 13px;
+  height: 13px;
+}
+
+.wcard h3 {
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.wcard__desc {
+  font-size: 14.5px;
+  color: var(--muted);
+  flex: 1;
+}
+
+@media (max-width: 960px) {
+  .pgrid,
+  .wgrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .pgrid,
+  .wgrid,
+  .pcard--wide {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pcard__shot {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .pcard__shot img {
+    min-height: 0;
+    height: auto;
+  }
+}
