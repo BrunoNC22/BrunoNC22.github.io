@@ -28,14 +28,6 @@ export const professionalWork: ProfessionalWork[] = [
     techs: ['Next.js', 'NestJS', 'MongoDB', 'Socket.IO', 'Stripe', 'Jest'],
   },
   {
-    id: 'restaurante',
-    title: 'Dashboard de gestão para restaurante',
-    period: 'mai/2026 – jul/2026',
-    team: 'Individual',
-    description: 'Aplicação desktop com indicadores de vendas e operação, alimentada pelo banco de dados do sistema do restaurante.',
-    techs: ['Electron', 'React', 'TypeScript', 'Java', 'Spring Boot', 'Nx'],
-  },
-  {
     id: 'whatsapp',
     title: 'Atendimento via WhatsApp com IA',
     period: 'jul/2026',

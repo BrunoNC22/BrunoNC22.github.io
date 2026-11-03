@@ -23,15 +23,22 @@ export interface CodeSample {
   source: string
 }
 
+/** Exibido no lugar da captura de tela quando o projeto mostra dados reais de um cliente. */
+export interface ContextCard {
+  note: string
+  facts: Array<{ label: string; value: string }>
+}
+
 export interface CaseStudy {
-  id: 'shopping-list' | 'empregae'
+  id: 'shopping-list' | 'empregae' | 'syriana'
   title: string
   tagline: string
   period: string
   role: string
   stats: Stat[]
   links: LinkItem[]
-  screenshot: { src: string; alt: string; url: string; width: number; height: number }
+  screenshot?: { src: string; alt: string; url: string; width: number; height: number }
+  context?: ContextCard
   problem: string
   decisions: Decision[]
   diagramCaption: string
@@ -44,6 +51,8 @@ export interface CaseStudy {
 
 const SHOPPING_REPO = 'https://github.com/BrunoNC22/shopping-list'
 const EMPREGAE_API_REPO = 'https://github.com/BrunoNC22/empreg-ae-backend'
+const SYRIANA_APP_REPO = 'https://github.com/BrunoNC22/syriana-dashboard-frontend'
+const SYRIANA_API_REPO = 'https://github.com/BrunoNC22/syriana-dashboard-backend'
 
 export const caseStudies: CaseStudy[] = [
   {
@@ -232,5 +241,106 @@ export const caseStudies: CaseStudy[] = [
       'Fluxo de candidatura com acompanhamento de status pelo candidato.',
     ],
     techs: ['TypeScript', 'Vue 3', 'PrimeVue', 'TanStack Query', 'NestJS', 'PostgreSQL', 'TypeORM', 'Passport', 'JWT', 'Swagger', 'Jest', 'Docker'],
+  },
+  {
+    id: 'syriana',
+    title: 'Syriana Dashboard',
+    tagline: 'Painel de gestão para um restaurante em funcionamento, construído sobre o banco de dados do sistema de caixa que ele já usava.',
+    period: 'mai/2026 – jul/2026',
+    role: 'Autor único: API, aplicativo desktop, instalador e implantação no restaurante',
+    stats: [
+      { value: '50', label: 'commits' },
+      { value: '14', label: 'endpoints na API' },
+      { value: '0', label: 'escritas no banco do PDV' },
+      { value: '1', label: 'instalador .exe, sem Java' },
+    ],
+    links: [
+      { label: 'Aplicativo', href: SYRIANA_APP_REPO },
+      { label: 'API', href: SYRIANA_API_REPO },
+    ],
+    context: {
+      note: 'Sem capturas de tela: o painel exibe o faturamento real do restaurante. O código é público; os dados, não.',
+      facts: [
+        { label: 'Cliente', value: 'Restaurante Syriana' },
+        { label: 'Onde roda', value: 'Computador do caixa, Windows, sem servidor na nuvem' },
+        { label: 'Fonte dos dados', value: 'Banco Firebird do sistema de PDV, somente leitura' },
+        { label: 'Entrega', value: 'Instalador com a API embutida' },
+      ],
+    },
+    problem:
+      'O restaurante já registrava tudo num sistema de PDV de terceiros, mas o dono não conseguia responder perguntas simples: quanto vendeu no mês comparado ao anterior, quais produtos e horários rendem mais, quanto gastou em insumos e quanto cada garçom gerou. Eu não podia mexer no banco do PDV, que está em produção, e o painel precisava rodar no próprio computador do caixa, instalado com um clique.',
+    decisions: [
+      {
+        title: 'Leitura direta do banco legado, sem tocar no esquema',
+        body: 'A API consulta o Firebird do PDV com SQL via JDBC e nunca escreve nele. Estudei as tabelas para achar as colunas confiáveis: o código do produto nos itens do pedido vem sempre vazio, então os rankings agrupam pelo detalhe do produto.',
+      },
+      {
+        title: 'Backend Java compilado como imagem nativa',
+        body: 'A API em Spring Boot vira um www.exe com GraalVM: sobe rápido e dispensa instalar Java na máquina do cliente. O electron-builder embute esse executável no instalador.',
+      },
+      {
+        title: 'O Electron orquestra a API',
+        body: 'O processo principal inicia o www.exe, espera a API responder e grava os logs em arquivo, para eu conseguir diagnosticar problemas na máquina do cliente. Na primeira execução, uma tela escolhe o arquivo .fdb e grava a configuração que a API lê ao iniciar.',
+      },
+      {
+        title: 'KPIs que se comparam sozinhos',
+        body: 'Ao escolher um período, cada indicador mostra a variação contra o período equivalente: o mesmo dia da semana passada, o mês anterior até a mesma data, ou um intervalo de mesma duração.',
+      },
+      {
+        title: 'Lucro a partir do estoque',
+        body: 'O custo de cada venda vem das baixas de estoque (quantidade × preço de custo do insumo). Isso alimenta o lucro do período, os insumos que mais custaram e o detalhe de cada produto.',
+      },
+    ],
+    diagramCaption:
+      'Tudo roda no computador do restaurante: o aplicativo inicia a API nativa, que lê o banco do PDV sem escrever nada nele.',
+    code: {
+      file: 'src/renderer/src/kpis/periodComparison.ts',
+      href: `${SYRIANA_APP_REPO}/blob/main/src/renderer/src/kpis/periodComparison.ts`,
+      source: `export function getComparisonPeriod(range: DateRange): PeriodComparison {
+  const start = startOfDay(range.start)
+  const end = startOfDay(range.end)
+  const today = startOfDay(new Date())
+
+  // Dia específico
+  if (isSameDay(start, end)) {
+    return {
+      previous: { start: subWeeks(start, 1), end: subWeeks(end, 1) },
+      label: 'em relação ao mesmo dia da semana passada'
+    }
+  }
+
+  // Mês completo
+  if (isSameDay(start, startOfMonth(start)) && isSameDay(end, endOfMonth(start))) {
+    const isCurrentMonth =
+      start.getFullYear() === today.getFullYear() && start.getMonth() === today.getMonth()
+    if (isCurrentMonth) {
+      // Mês corrente: compara do dia 1 até hoje contra o mesmo intervalo do mês anterior.
+      const previousEnd = subMonths(today, 1)
+      return {
+        previous: { start: startOfMonth(previousEnd), end: previousEnd },
+        label: 'em relação ao mês anterior (até hoje)'
+      }
+    }
+    // ... mês passado, ano e semana seguem a mesma ideia
+  }
+
+  // Intervalo livre: período imediatamente anterior de mesma duração
+  const lengthInDays = differenceInCalendarDays(end, start) + 1
+  return {
+    previous: { start: subDays(start, lengthInDays), end: subDays(start, 1) },
+    label: 'em relação ao período anterior'
+  }
+}`,
+    },
+    codeCaption:
+      'Comparar o mês corrente com o mês anterior inteiro faria todo início de mês parecer uma queda; por isso a comparação vai só até a mesma data.',
+    quality:
+      'É o ponto mais fraco do projeto: ainda não há testes automatizados nos repositórios. Antes de cada entrega, um teste de fumaça sobe o executável com a configuração real e confere se a API responde.',
+    nextSteps: [
+      'Testes de integração das consultas contra um banco Firebird de teste, começando pelo faturamento e pelo lucro.',
+      'Testes unitários da comparação de períodos, que tem muitos casos de borda com datas.',
+      'Ativar a atualização automática do aplicativo (o electron-updater já está no projeto).',
+    ],
+    techs: ['Java', 'Spring Boot', 'JDBC', 'Firebird', 'GraalVM', 'Electron', 'React', 'TypeScript', 'TanStack Query', 'Chart.js', 'Tailwind CSS'],
   },
 ]

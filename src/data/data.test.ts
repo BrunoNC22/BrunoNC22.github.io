@@ -32,6 +32,12 @@ describe('estudos de caso', () => {
     }
   })
 
+  it('mostram captura de tela ou, no lugar dela, o contexto', () => {
+    for (const study of caseStudies) {
+      expect(Boolean(study.screenshot) !== Boolean(study.context)).toBe(true)
+    }
+  })
+
   it('o link do código aponta para o mesmo arquivo exibido', () => {
     for (const study of caseStudies) {
       expect(study.code.href.endsWith(study.code.file)).toBe(true)

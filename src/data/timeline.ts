@@ -103,7 +103,7 @@ export const timeline: TimelineEntry[] = [
     summary: 'Sistemas de gestão e plataformas web desenvolvidos de ponta a ponta, sozinho ou em equipe.',
     bullets: [
       'Sistema de gestão para agência de marketing e plataforma de músicas sob demanda (Next.js + NestJS + MongoDB).',
-      'Dashboard desktop para restaurante e atendimento via WhatsApp com IA.',
+      'Dashboard desktop para o restaurante Syriana (estudo de caso 03) e atendimento via WhatsApp com IA.',
     ],
     techs: ['Next.js', 'React', 'NestJS', 'MongoDB', 'PostgreSQL', 'Stripe', 'Socket.IO', 'Electron', 'Java', 'Spring Boot', 'OpenAI API', 'Jest', 'Vitest', 'Docker'],
   },

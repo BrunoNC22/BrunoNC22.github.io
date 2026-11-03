@@ -48,6 +48,53 @@ export function ShoppingListDiagram() {
   )
 }
 
+export function SyrianaDiagram() {
+  return (
+    <Diagram
+      title="Arquitetura do Syriana Dashboard"
+      description="No computador do restaurante, o aplicativo Electron tem uma interface React que busca os indicadores com TanStack Query na API local por HTTP. O processo principal do Electron inicia a API e grava a configuração com o caminho do banco. A API, em Spring Boot compilada como imagem nativa, lê essa configuração, consulta o banco Firebird do sistema de PDV por JDBC, somente leitura, enquanto o próprio PDV continua gravando os pedidos e o estoque nesse banco."
+      width={800}
+      height={440}
+      groups={[
+        { label: 'APLICATIVO ELECTRON', x: 16, y: 16, w: 300, h: 336 },
+        { label: 'API LOCAL · IMAGEM NATIVA', x: 340, y: 16, w: 210, h: 336 },
+        { label: 'PDV · DE TERCEIROS', x: 574, y: 16, w: 210, h: 336 },
+      ]}
+      boxes={[
+        { id: 'ui', title: 'Interface React', sub: 'KPIs, gráficos, garçons', x: 40, y: 52, w: 252, h: 54 },
+        { id: 'query', title: 'TanStack Query', sub: 'cache e estados de carga', x: 40, y: 128, w: 252, h: 54 },
+        { id: 'main', title: 'Processo principal', sub: 'inicia a API · logs · login', x: 40, y: 204, w: 252, h: 54, tone: 'accent' },
+        { id: 'config', title: 'server-config.json', sub: 'arquivo .fdb, host, porta', x: 40, y: 280, w: 252, h: 54 },
+        { id: 'api', title: 'API Spring Boot', sub: '14 endpoints REST', x: 364, y: 52, w: 162, h: 54 },
+        { id: 'repo', title: 'Repositórios', sub: 'SQL via JdbcTemplate', x: 364, y: 166, w: 162, h: 54, tone: 'accent' },
+        { id: 'ds', title: 'DataSource', sub: 'Hikari + Jaybird', x: 364, y: 280, w: 162, h: 54 },
+        { id: 'pdv', title: 'PDV do restaurante', sub: 'pedidos, caixa, estoque', x: 598, y: 52, w: 162, h: 54 },
+        { id: 'fdb', title: 'Banco Firebird', sub: 'arquivo .fdb', x: 598, y: 280, w: 162, h: 54, tone: 'data' },
+        {
+          id: 'pc',
+          title: 'Computador do caixa · Windows',
+          sub: 'um instalador com a API embutida; sem nuvem e sem Java instalado',
+          x: 16,
+          y: 372,
+          w: 768,
+          h: 52,
+          tone: 'shared',
+        },
+      ]}
+      arrows={[
+        { from: 'ui', to: 'query', fromSide: 'bottom', toSide: 'top' },
+        { from: 'query', to: 'api', fromSide: 'right', toSide: 'left', label: 'HTTP' },
+        { from: 'main', to: 'config', fromSide: 'bottom', toSide: 'top', dashed: true },
+        { from: 'config', to: 'ds', fromSide: 'right', toSide: 'left', dashed: true },
+        { from: 'api', to: 'repo', fromSide: 'bottom', toSide: 'top' },
+        { from: 'repo', to: 'ds', fromSide: 'bottom', toSide: 'top' },
+        { from: 'ds', to: 'fdb', fromSide: 'right', toSide: 'left', label: 'leitura' },
+        { from: 'pdv', to: 'fdb', fromSide: 'bottom', toSide: 'top', label: 'grava' },
+      ]}
+    />
+  )
+}
+
 export function EmpregaeDiagram() {
   return (
     <Diagram

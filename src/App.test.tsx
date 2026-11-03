@@ -21,14 +21,21 @@ describe('App', () => {
     }
   })
 
-  it('renderiza os dois estudos de caso com diagrama e código', () => {
+  it('renderiza os três estudos de caso com diagrama e código', () => {
     render(<App />)
-    for (const title of ['Shopping List', 'EmpregAE']) {
+    for (const title of ['Shopping List', 'EmpregAE', 'Syriana Dashboard']) {
       const article = screen.getByRole('article', { name: title })
       expect(within(article).getByText('Decisões técnicas')).toBeInTheDocument()
       expect(within(article).getByRole('img', { name: /arquitetura/i })).toBeInTheDocument()
       expect(within(article).getByRole('link', { name: /ver no github/i })).toBeInTheDocument()
     }
+  })
+
+  it('mostra o contexto no lugar da captura quando o projeto tem dados reais de cliente', () => {
+    render(<App />)
+    const article = screen.getByRole('article', { name: 'Syriana Dashboard' })
+    expect(within(article).getByText(/sem capturas de tela/i)).toBeInTheDocument()
+    expect(within(article).queryByRole('img', { name: /tela|captura/i })).toBeNull()
   })
 
   it('abre links externos em nova aba com rel seguro', () => {

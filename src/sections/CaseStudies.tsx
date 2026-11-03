@@ -1,17 +1,37 @@
 import type { ComponentType } from 'react'
-import { EmpregaeDiagram, ShoppingListDiagram } from '../components/diagram/architectures'
+import { EmpregaeDiagram, ShoppingListDiagram, SyrianaDiagram } from '../components/diagram/architectures'
 import { BrowserFrame } from '../components/ui/BrowserFrame'
 import { CodeBlock } from '../components/ui/CodeBlock'
 import { Icon } from '../components/ui/Icon'
 import { Reveal } from '../components/ui/Reveal'
 import { SectionHeader } from '../components/ui/SectionHeader'
 import { TechList } from '../components/ui/TechList'
-import { caseStudies, type CaseStudy } from '../data/caseStudies'
+import { caseStudies, type CaseStudy, type ContextCard } from '../data/caseStudies'
 import './case-study.css'
 
 const DIAGRAMS: Record<CaseStudy['id'], ComponentType> = {
   'shopping-list': ShoppingListDiagram,
   empregae: EmpregaeDiagram,
+  syriana: SyrianaDiagram,
+}
+
+function Context({ context }: { context: ContextCard }) {
+  return (
+    <div className="cs__context card">
+      <p className="cs__context-note">
+        <Icon name="lock" />
+        {context.note}
+      </p>
+      <dl>
+        {context.facts.map((fact) => (
+          <div key={fact.label}>
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  )
 }
 
 function CaseStudyArticle({ study, index }: { study: CaseStudy; index: number }) {
@@ -58,7 +78,7 @@ function CaseStudyArticle({ study, index }: { study: CaseStudy; index: number })
 
       <div className="cs__intro">
         <Reveal>
-          <BrowserFrame {...study.screenshot} />
+          {study.screenshot ? <BrowserFrame {...study.screenshot} /> : study.context && <Context context={study.context} />}
         </Reveal>
         <Reveal className="cs__problem" delay={80}>
           <h4 className="cs__label">O problema</h4>
@@ -119,8 +139,9 @@ export function CaseStudies() {
     <section className="section" aria-labelledby="estudos">
       <div className="container">
         <SectionHeader index="02" eyebrow="Estudos de caso" title="Como penso e construo um sistema" id="estudos">
-          Dois projetos meus, de código aberto, contados por dentro: o problema, as decisões de arquitetura, um trecho
-          real do código e o que eu faria a seguir. Todo o histórico de commits está público no GitHub.
+          Três projetos meus, um deles em uso num restaurante, contados por dentro: o problema, as decisões de
+          arquitetura, um trecho real do código e o que eu faria a seguir. Todo o histórico de commits está público no
+          GitHub.
         </SectionHeader>
 
         <div className="cs-list">
