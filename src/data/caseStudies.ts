@@ -251,7 +251,7 @@ export const caseStudies: CaseStudy[] = [
     period: 'mai/2026 – jul/2026',
     role: 'Autor único: API, aplicativo desktop, instalador e implantação no restaurante',
     stats: [
-      { value: '88', label: 'commits' },
+      { value: '89', label: 'commits' },
       { value: '20', label: 'endpoints na API' },
       { value: '56', label: 'testes na API' },
       { value: '0', label: 'escritas no banco do PDV' },
