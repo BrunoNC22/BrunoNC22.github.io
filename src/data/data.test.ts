@@ -32,10 +32,9 @@ describe('estudos de caso', () => {
     }
   })
 
-  it('mostram captura de tela ou, no lugar dela, o contexto', () => {
-    for (const study of caseStudies) {
-      expect(Boolean(study.screenshot) !== Boolean(study.context)).toBe(true)
-    }
+  it('capturas de projetos de clientes avisam que os dados são ilustrativos', () => {
+    const cliente = caseStudies.find((s) => s.id === 'syriana')
+    expect(cliente?.screenshot.note).toMatch(/ilustrativos/)
   })
 
   it('o link do código aponta para o mesmo arquivo exibido', () => {

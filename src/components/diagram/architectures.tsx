@@ -65,7 +65,7 @@ export function SyrianaDiagram() {
         { id: 'query', title: 'TanStack Query', sub: 'cache e estados de carga', x: 40, y: 128, w: 252, h: 54 },
         { id: 'main', title: 'Processo principal', sub: 'inicia a API · logs · login', x: 40, y: 204, w: 252, h: 54, tone: 'accent' },
         { id: 'config', title: 'server-config.json', sub: 'arquivo .fdb, host, porta', x: 40, y: 280, w: 252, h: 54 },
-        { id: 'api', title: 'API Spring Boot', sub: '14 endpoints REST', x: 364, y: 52, w: 162, h: 54 },
+        { id: 'api', title: 'API Spring Boot', sub: '20 endpoints REST', x: 364, y: 52, w: 162, h: 54 },
         { id: 'repo', title: 'Repositórios', sub: 'SQL via JdbcTemplate', x: 364, y: 166, w: 162, h: 54, tone: 'accent' },
         { id: 'ds', title: 'DataSource', sub: 'Hikari + Jaybird', x: 364, y: 280, w: 162, h: 54 },
         { id: 'pdv', title: 'PDV do restaurante', sub: 'pedidos, caixa, estoque', x: 598, y: 52, w: 162, h: 54 },

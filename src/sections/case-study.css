@@ -93,49 +93,22 @@
   gap: 14px;
 }
 
-/* Ocupa o lugar da captura de tela quando o projeto mostra dados reais de um cliente. */
-.cs__context {
-  display: grid;
-  gap: 18px;
-  padding: clamp(20px, 3vw, 28px);
-}
-
-.cs__context-note {
+/* Aviso sob a captura de tela, como o de dados fictícios. */
+.cs__shot-note {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: flex-start;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--line);
-  font-size: 14.5px;
-  color: var(--text);
+  margin-top: 12px;
+  font-size: 13.5px;
+  color: var(--muted);
 }
 
-.cs__context-note svg {
+.cs__shot-note svg {
   flex: none;
-  width: 18px;
-  height: 18px;
+  width: 15px;
+  height: 15px;
   margin-top: 3px;
-  color: var(--accent);
-}
-
-.cs__context dl {
-  display: grid;
-  gap: 14px;
-  margin: 0;
-}
-
-.cs__context dt {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--faint);
-}
-
-.cs__context dd {
-  margin: 2px 0 0;
-  font-size: 15px;
-  color: var(--text);
+  color: var(--alert);
 }
 
 .cs__problem p {

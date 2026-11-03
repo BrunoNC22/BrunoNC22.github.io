@@ -31,11 +31,11 @@ describe('App', () => {
     }
   })
 
-  it('mostra o contexto no lugar da captura quando o projeto tem dados reais de cliente', () => {
+  it('avisa que os dados da captura do projeto de cliente são ilustrativos', () => {
     render(<App />)
     const article = screen.getByRole('article', { name: 'Syriana Dashboard' })
-    expect(within(article).getByText(/sem capturas de tela/i)).toBeInTheDocument()
-    expect(within(article).queryByRole('img', { name: /tela|captura/i })).toBeNull()
+    expect(within(article).getByRole('img', { name: /dados fictícios/i })).toBeInTheDocument()
+    expect(within(article).getByText(/meramente ilustrativos/i)).toBeInTheDocument()
   })
 
   it('abre links externos em nova aba com rel seguro', () => {

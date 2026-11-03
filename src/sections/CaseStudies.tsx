@@ -6,32 +6,13 @@ import { Icon } from '../components/ui/Icon'
 import { Reveal } from '../components/ui/Reveal'
 import { SectionHeader } from '../components/ui/SectionHeader'
 import { TechList } from '../components/ui/TechList'
-import { caseStudies, type CaseStudy, type ContextCard } from '../data/caseStudies'
+import { caseStudies, type CaseStudy } from '../data/caseStudies'
 import './case-study.css'
 
 const DIAGRAMS: Record<CaseStudy['id'], ComponentType> = {
   'shopping-list': ShoppingListDiagram,
   empregae: EmpregaeDiagram,
   syriana: SyrianaDiagram,
-}
-
-function Context({ context }: { context: ContextCard }) {
-  return (
-    <div className="cs__context card">
-      <p className="cs__context-note">
-        <Icon name="lock" />
-        {context.note}
-      </p>
-      <dl>
-        {context.facts.map((fact) => (
-          <div key={fact.label}>
-            <dt>{fact.label}</dt>
-            <dd>{fact.value}</dd>
-          </div>
-        ))}
-      </dl>
-    </div>
-  )
 }
 
 function CaseStudyArticle({ study, index }: { study: CaseStudy; index: number }) {
@@ -78,7 +59,13 @@ function CaseStudyArticle({ study, index }: { study: CaseStudy; index: number })
 
       <div className="cs__intro">
         <Reveal>
-          {study.screenshot ? <BrowserFrame {...study.screenshot} /> : study.context && <Context context={study.context} />}
+          <BrowserFrame {...study.screenshot} />
+          {study.screenshot.note && (
+            <p className="cs__shot-note">
+              <Icon name="lock" />
+              {study.screenshot.note}
+            </p>
+          )}
         </Reveal>
         <Reveal className="cs__problem" delay={80}>
           <h4 className="cs__label">O problema</h4>
